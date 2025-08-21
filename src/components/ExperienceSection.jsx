@@ -120,7 +120,8 @@ export const ExperienceSection = () => {
           
           <div className="text-center text-muted-foreground">
             <p className="text-lg">Business & Research Experience</p>
-            <p className="text-sm mt-2">Add your internships, research positions, and leadership roles using the business-focused templates above.</p>
+            <p className="text-sm mt-2">CIBC Capital Markets | Global Markets Analyst 
+              CIBC Asset Management	| Global Beta, Overlays and Outcome Management (GBO2^2) Analyst.</p>
           </div>
         </div>
       </div>
