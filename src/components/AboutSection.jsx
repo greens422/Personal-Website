@@ -12,14 +12,15 @@ export const AboutSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
             <h3 className="text-2xl font-semibold">
-              Future Business Leader & Life Sciences Enthusiast!
+              Life Sciences Enthusiast & Future Business Leader
             </h3>
 
             <p className="text-muted-foreground">
-              I'm a dedicated Biology & Business student at McMaster University with a 
-              passion for bridging the gap between scientific innovation and 
-              business strategy. I'm a life-long learner who believes the future of 
-              business lies in sustainable, bio-inspired solutions.
+            I don’t just want to think outside the box — I want to understand how 
+            the box itself is built, why it exists, and how it can be reshaped. 
+            At McMaster, I’m combining life sciences and business to understand new 
+            ways of solving problems, designing systems, and creating opportunities 
+            that others might overlook.
             </p>
 
             <p className="text-muted-foreground">
@@ -51,11 +52,13 @@ export const AboutSection = () => {
                   <Microscope className="h-6 w-6 text-primary" />
                 </div>
                 <div className="text-left">
-                  <h4 className="font-semibold text-lg">Life Sciences Research</h4>
+                  <h4 className="font-semibold text-lg">Life Sciences</h4>
                   <p className="text-muted-foreground">
-                    Conducting biological research and analysis to understand 
-                    complex life processes and their applications. My senior research
-                    thesis will be focused on antimicrobial resistance. 
+                  Studying life sciences has taught me more than biology — it’s 
+                  shown me how intricate systems are built. My senior research will be
+                  on antimicrobial resistance. I hope to understand not just how microbes 
+                  behave, but why we frame problems the way we do, and how reimagining 
+                  those frameworks can lead to better solutions.
                   </p>
                 </div>
               </div>
@@ -66,10 +69,13 @@ export const AboutSection = () => {
                   <TrendingUp className="h-6 w-6 text-primary" />
                 </div>
                 <div className="text-left">
-                  <h4 className="font-semibold text-lg">Business Strategy</h4>
+                  <h4 className="font-semibold text-lg">Business</h4>
                   <p className="text-muted-foreground">
-                    Developing strategic business plans and analyzing market 
-                    opportunities in biotechnology sectors. 
+                  For me, business isn’t just about applying strategies — it’s about 
+                  questioning the assumptions those strategies rest on. By exploring 
+                  marketing, consumer behavior, and organizational design, I aim to 
+                  uncover not just how businesses compete, but how the rules of 
+                  competition itself are created.
                   </p>
                 </div>
               </div>
@@ -83,8 +89,10 @@ export const AboutSection = () => {
                 <div className="text-left">
                   <h4 className="font-semibold text-lg">Entrepreneurship</h4>
                   <p className="text-muted-foreground">
-                    Exploring innovative business models and startup opportunities 
-                    in the biotech and sustainability sectors.
+                  Entrepreneurship is about creation, but for me it’s also about 
+                  deconstruction. I’m fascinated by taking apart existing models, 
+                  seeing how they’re put together, and rebuilding them in ways that 
+                  might make more sense.
                   </p>
                 </div>
               </div>
