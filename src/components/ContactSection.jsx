@@ -21,20 +21,39 @@ export const ContactSection = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
+    const formData = {
+      from_name: e.target.name.value,
+      from_email: e.target.email.value,
+      message: e.target.message.value,
+      to_name: "Sophia",
+    };
+
     try {
-      const result = await emailjs.send(
+      // Send email to you
+      await emailjs.send(
         "service_aopv8tu",
         "template_9281vb8",
-        {
-          from_name: e.target.name.value,
-          from_email: e.target.email.value,
-          message: e.target.message.value,
-          to_name: "Sophia",
-        },
+        formData,
         "Jt-8ve0cvbtZ5ZFn1"
       );
 
-      console.log("EmailJS Success:", result);
+      // Send auto-reply to the sender
+      const autoReplyParams = {
+        email: formData.from_email,    // Changed from user_email to email
+        name: formData.from_name,
+        message: formData.message
+      };
+
+      console.log("Auto-reply params:", autoReplyParams); // Debug log
+
+      await emailjs.send(
+        "service_aopv8tu",
+        "template_191rd0h",
+        autoReplyParams,
+        "Jt-8ve0cvbtZ5ZFn1"
+      );
+
+      console.log("Emails sent successfully");
       
       toast({
         title: "Message sent!",
@@ -43,7 +62,6 @@ export const ContactSection = () => {
       e.target.reset();
     } catch (error) {
       console.error("EmailJS Error:", error);
-      console.error("Error text:", error.text);
       toast({
         title: "Error",
         description: error.text || "Failed to send message. Please try again.",

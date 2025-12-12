@@ -61,67 +61,67 @@ const leadership = [
 ];
 
 export const ExperienceSection = () => {
-	return (
-		<section id="experience" className="py-24 px-4 relative">
-			<div className="container mx-auto max-w-5xl">
-				<h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-					Work <span className="text-primary">Experience</span>
-				</h2>
-				<div className="grid grid-cols-1 gap-8 mb-16">
-					{experiences.map((exp, idx) => (
-						<div
-							key={idx}
-							className="bg-card p-6 rounded-lg shadow-xs card-hover flex items-start gap-4"
-						>
-							<div className="p-3 rounded-full bg-primary/10">
-								<Briefcase className="h-6 w-6 text-primary" />
-							</div>
-							<div className="text-left">
-								<h3 className="font-semibold text-lg">{exp.title}</h3>
-								<p className="text-muted-foreground">
-									{exp.organization}
-								</p>
-								<p className="text-xs text-muted-foreground mb-2">
-									{exp.period}
-								</p>
-								<p className="text-muted-foreground">
-									{exp.description}
-								</p>
-							</div>
-						</div>
-					))}
-				</div>
-				<h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-					Leadership <span className="text-primary">Experience</span>
-				</h2>
-				<div className="grid grid-cols-1 gap-8">
-					{leadership.map((role, idx) => (
-						<div
-							key={idx}
-							className="bg-card p-6 rounded-lg shadow-xs card-hover flex items-start gap-4"
-						>
-							<div className="p-3 rounded-full bg-primary/10">
-								<Briefcase className="h-6 w-6 text-primary" />
-							</div>
-							<div className="text-left">
-								<h3 className="font-semibold text-lg">{role.title}</h3>
-								<p className="text-muted-foreground">
-									{role.organization}
-								</p>
-								<p className="text-xs text-muted-foreground mb-1">
-									{role.location}
-								</p>
-								<p className="text-xs text-muted-foreground mb-2">
-									{role.period}
-								</p>
-								<p className="text-muted-foreground">
-									{role.description}
-								</p>
-							</div>
-						</div>
-					))}
-				</div>
-			</div>
-		</section>
-	);
+    return (
+        <section id="experience" className="py-24 px-4 relative">
+            <div className="container mx-auto max-w-5xl">
+                <h2 className="text-3xl md:text-4xl font-bold mb-12 text-left">
+                    Work <span className="text-primary">Experience</span>
+                </h2>
+                <div className="grid grid-cols-1 gap-8 mb-16">
+                    {experiences.map((exp, idx) => (
+                        <div
+                            key={idx}
+                            className="bg-card p-6 rounded-lg shadow-xs card-hover flex items-start gap-4"
+                        >
+                            <div className="p-3 rounded-full bg-primary/10">
+                                <Briefcase className="h-6 w-6 text-primary" />
+                            </div>
+                            <div className="text-left">
+                                <h3 className="font-semibold text-lg">{exp.title}</h3>
+                                <p className="text-muted-foreground">
+                                    {exp.organization}
+                                </p>
+                                <p className="text-xs text-muted-foreground mb-2">
+                                    {exp.period}
+                                </p>
+                                <p className="text-muted-foreground">
+                                    {exp.description}
+                                </p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+                <h2 className="text-3xl md:text-4xl font-bold mb-12 text-left">
+                    Leadership <span className="text-primary">Experience</span>
+                </h2>
+                <div className="grid grid-cols-1 gap-8">
+                    {leadership.map((role, idx) => (
+                        <div
+                            key={idx}
+                            className="bg-card p-6 rounded-lg shadow-xs card-hover flex items-start gap-4"
+                        >
+                            <div className="p-3 rounded-full bg-primary/10">
+                                <Briefcase className="h-6 w-6 text-primary" />
+                            </div>
+                            <div className="text-left">
+                                <h3 className="font-semibold text-lg">{role.title}</h3>
+                                <p className="text-muted-foreground">
+                                    {role.organization}
+                                </p>
+                                <p className="text-xs text-muted-foreground mb-1">
+                                    {role.location}
+                                </p>
+                                <p className="text-xs text-muted-foreground mb-2">
+                                    {role.period}
+                                </p>
+                                <p className="text-muted-foreground">
+                                    {role.description}
+                                </p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
 };
