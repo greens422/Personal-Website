@@ -1,0 +1,5 @@
+// In Navbar.jsx, change this line:
+href="/Green_Sophia_Resume.pdf"
+
+// To this:
+href="/Green_Sophia_Resume.pdf"
