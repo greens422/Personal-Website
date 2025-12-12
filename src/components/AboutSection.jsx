@@ -24,9 +24,7 @@ export const AboutSection = () => {
             </p>
 
             <p className="text-muted-foreground">
-              My goal is to leverage my background in science to create innovative 
-              business models that address global challenges. I'm particularly 
-              interested in entrepreneurship, sustainable business 
+              I'm particularly interested in entrepreneurship, sustainable business 
               practices, and the commercialization of life science research.
             </p>
 
@@ -58,7 +56,7 @@ export const AboutSection = () => {
                   shown me how intricate systems are built. My senior research will be
                   on antimicrobial resistance. I hope to understand not just how microbes 
                   behave, but why we frame problems the way we do, and how reimagining 
-                  those frameworks can lead to better solutions.
+                  those frameworks can lead to different solutions.
                   </p>
                 </div>
               </div>
@@ -75,7 +73,7 @@ export const AboutSection = () => {
                   questioning the assumptions those strategies rest on. By exploring 
                   marketing, consumer behavior, and organizational design, I aim to 
                   uncover not just how businesses compete, but how the rules of 
-                  competition itself are created.
+                  competition themselves are created.
                   </p>
                 </div>
               </div>
@@ -92,7 +90,7 @@ export const AboutSection = () => {
                   Entrepreneurship is about creation, but for me it’s also about 
                   deconstruction. I’m fascinated by taking apart existing models, 
                   seeing how they’re put together, and rebuilding them in ways that 
-                  might make more sense.
+                  might make more sense. Or not. I enjoy the process of experimentation.
                   </p>
                 </div>
               </div>
