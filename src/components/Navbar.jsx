@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Download } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const navItems = [
@@ -17,7 +17,7 @@ export const Navbar = () => {
 
 	useEffect(() => {
 		const handleScroll = () => {
-			setIsScrolled(window.screenY > 10);
+			setIsScrolled(window.scrollY > 10);
 		};
 
 		window.addEventListener("scroll", handleScroll);
@@ -44,7 +44,7 @@ export const Navbar = () => {
 				</a>
 
 				{/* desktop nav */}
-				<div className="hidden md:flex space-x-8">
+				<div className="hidden md:flex items-center space-x-8">
 					{navItems.map((item, key) => (
 						<a
 							key={key}
@@ -54,6 +54,14 @@ export const Navbar = () => {
 							{item.name}
 						</a>
 					))}
+					<a
+						href="/Sophia_Green_CV.pdf"
+						download
+						className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors duration-300"
+					>
+						<Download size={18} />
+						CV
+					</a>
 				</div>
 
 				{/* mobile nav */}
@@ -68,7 +76,7 @@ export const Navbar = () => {
 
 				<div
 					className={cn(
-						"fixed inset-0 bg-background/95 backdroup-blur-md z-40 flex flex-col items-center justify-center",
+						"fixed inset-0 bg-background/95 backdrop-blur-md z-40 flex flex-col items-center justify-center",
 						"transition-all duration-300 md:hidden",
 						isMenuOpen
 							? "opacity-100 pointer-events-auto"
@@ -87,7 +95,7 @@ export const Navbar = () => {
 							</a>
 						))}
 						<a
-							href="/Green_Sophia_Resume.pdf"
+							href="/Sophia_Green_CV.pdf"
 							download
 							className="flex items-center justify-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors duration-300"
 							onClick={() => setIsMenuOpen(false)}

@@ -11,24 +11,49 @@ import {
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
+import emailjs from "@emailjs/browser";
 
 export const ContactSection = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
     setIsSubmitting(true);
 
-    setTimeout(() => {
+    try {
+      const result = await emailjs.send(
+        "service_aopv8tu",
+        "template_9281vb8",
+        {
+          from_name: e.target.name.value,
+          from_email: e.target.email.value,
+          message: e.target.message.value,
+          to_name: "Sophia",
+        },
+        "Jt-8ve0cvbtZ5ZFn1"
+      );
+
+      console.log("EmailJS Success:", result);
+      
       toast({
         title: "Message sent!",
         description: "Thank you for your message. I'll get back to you soon.",
       });
+      e.target.reset();
+    } catch (error) {
+      console.error("EmailJS Error:", error);
+      console.error("Error text:", error.text);
+      toast({
+        title: "Error",
+        description: error.text || "Failed to send message. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
       setIsSubmitting(false);
-    }, 1500);
+    }
   };
+
   return (
     <section id="contact" className="py-24 px-4 relative bg-secondary/30">
       <div className="container mx-auto max-w-5xl">
@@ -109,13 +134,10 @@ export const ContactSection = () => {
             </div>
           </div>
 
-          <div
-            className="bg-card p-8 rounded-lg shadow-xs"
-            onSubmit={handleSubmit}
-          >
+          <div className="bg-card p-8 rounded-lg shadow-xs">
             <h3 className="text-2xl font-semibold mb-6"> Send a Message</h3>
 
-            <form className="space-y-6">
+            <form className="space-y-6" onSubmit={handleSubmit}>
               <div>
                 <label
                   htmlFor="name"
@@ -164,6 +186,7 @@ export const ContactSection = () => {
                   id="message"
                   name="message"
                   required
+                  rows="4"
                   className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden foucs:ring-2 focus:ring-primary resize-none"
                   placeholder="Hello, I'd like to talk about..."
                 />
