@@ -38,18 +38,14 @@ export const ContactSection = () => {
       );
 
       // Send auto-reply to the sender
-      const autoReplyParams = {
-        email: formData.from_email,    // Changed from user_email to email
-        name: formData.from_name,
-        message: formData.message
-      };
-
-      console.log("Auto-reply params:", autoReplyParams); // Debug log
-
       await emailjs.send(
         "service_aopv8tu",
         "template_191rd0h",
-        autoReplyParams,
+        {
+          user_email: formData.from_email,  // Changed: send as template parameter
+          name: formData.from_name,
+          message: formData.message,
+        },
         "Jt-8ve0cvbtZ5ZFn1"
       );
 
