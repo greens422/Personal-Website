@@ -12,6 +12,7 @@ import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
+import { supabase } from "@/supabaseClient";
 
 export const ContactSection = () => {
   const { toast } = useToast();
@@ -50,7 +51,22 @@ export const ContactSection = () => {
       );
 
       console.log("Emails sent successfully");
-      
+
+      // Store contact in Supabase
+      const { error: supabaseError } = await supabase
+        .from("contacts")
+        .insert([
+          {
+            name: formData.from_name,
+            email: formData.from_email,
+            message: formData.message,
+          },
+        ]);
+
+      if (supabaseError) {
+        console.error("Supabase Error:", supabaseError);
+      }
+
       toast({
         title: "Message sent!",
         description: "Thank you for your message. I'll get back to you soon.",
