@@ -1,0 +1,117 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Tokens.
+
+   Colour: cool, never warm. The banned AI-default cream is #F4F1EA — yellow-led,
+   R > G > B. Ours inverts that: green-led, B ≈ R, no yellow anywhere in it. Ink is
+   never pure black; it carries the same green cast so the page reads as one
+   material. Two colours + neutrals. No pink, by any name, anywhere.
+
+   Type: sans display + serif body — the reverse of the reflex pairing (a
+   high-contrast serif display is on the avoid-list). The inversion is load-bearing
+   for the marginalia: the formal column is the serif, and the real voice is the
+   sans. The two voices are typographically distinct, not merely smaller and greyer.
+--------------------------------------------------------------------------- */
+@theme {
+  --color-paper: #f2f4f1;
+  --color-ink: #12211e;
+  --color-accent: #0b6b5e;
+  --color-muted: #7a8c86;
+  --color-rule: #dde2dd;
+
+  --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-newsreader), ui-serif, Georgia, serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Visible keyboard focus — quality floor, and it must not be the browser default
+   blue against this palette. */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ---------------------------------------------------------------------------
+   Motion.
+
+   Everything below is CSS scroll-driven (`animation-timeline: view()`) — no JS
+   observers for what is only ever "this entered the viewport". The one JS-driven
+   moment on the page is the hero's second line, which needs real easing control.
+
+   `@media (prefers-reduced-motion: reduce)` at the bottom is not a degraded mode:
+   it resolves every element to its final state. The page reads perfectly still.
+--------------------------------------------------------------------------- */
+
+/* The margin voice: arrives as the line it belongs to reaches centre. It comes in
+   from further out and settles — the whole gesture is someone leaning in to say
+   something, not a UI element animating. */
+@keyframes note-arrive {
+  from {
+    opacity: 0;
+    transform: translateX(0.75rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.note {
+  animation: note-arrive linear both;
+  animation-timeline: view();
+  animation-range: entry 15% cover 40%;
+}
+
+/* Prose settles as it rises into the column. Deliberately not a fade-up on every
+   block — this is one continuous, quiet gesture applied to the reading column
+   only, and it is nearly imperceptible by design. */
+@keyframes settle {
+  from {
+    opacity: 0.55;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.settle {
+  animation: settle linear both;
+  animation-timeline: view();
+  /* Resolves early — by the time a paragraph is somewhere you'd actually read it,
+     it is already at full opacity. A lower floor or a longer range looks like a
+     nice effect in isolation and reads, in practice, as text that hasn't loaded. */
+  animation-range: entry 0% cover 22%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  /* Resolve to the finished state rather than leaving anything mid-keyframe. */
+  .note,
+  .settle {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
