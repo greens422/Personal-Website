@@ -3,20 +3,25 @@
 /* ---------------------------------------------------------------------------
    Tokens.
 
-   Colour: cool, never warm. The banned AI-default cream is #F4F1EA — yellow-led,
-   R > G > B. Ours inverts that: green-led, B ≈ R, no yellow anywhere in it. Ink is
-   never pure black; it carries the same green cast so the page reads as one
-   material. Two colours + neutrals. No pink, by any name, anywhere.
+   Colour: cool, never warm. The banned AI-default cream is #F4F1EA, which is
+   yellow-led (R > G > B). Ours inverts that: green-led, B ~= R, no yellow in it.
+   Ink is never pure black; it carries the same green cast so the page reads as
+   one material. Sage is the family colour (Green), and it does the decorative
+   work: the spine, the nodes, the sheen. It is never used for body text, where
+   it wouldn't hold contrast. No pink, by any name, anywhere.
 
-   Type: sans display + serif body — the reverse of the reflex pairing (a
-   high-contrast serif display is on the avoid-list). The inversion is load-bearing
-   for the marginalia: the formal column is the serif, and the real voice is the
-   sans. The two voices are typographically distinct, not merely smaller and greyer.
+   Type: sans display + serif body, the reverse of the reflex pairing (a
+   high-contrast serif display is on the avoid-list). The inversion is
+   load-bearing for the marginalia: the formal column is the serif, and the real
+   voice is the sans. The two voices are typographically distinct, not merely
+   smaller and greyer.
 --------------------------------------------------------------------------- */
 @theme {
   --color-paper: #f2f4f1;
   --color-ink: #12211e;
   --color-accent: #0b6b5e;
+  --color-sage: #8fa98f;
+  --color-shine: #cfe0cb;
   --color-muted: #7a8c86;
   --color-rule: #dde2dd;
 
@@ -36,8 +41,6 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* Visible keyboard focus — quality floor, and it must not be the browser default
-   blue against this palette. */
 :focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 3px;
@@ -47,21 +50,41 @@ body {
 /* ---------------------------------------------------------------------------
    Motion.
 
-   Everything below is CSS scroll-driven (`animation-timeline: view()`) — no JS
-   observers for what is only ever "this entered the viewport". The one JS-driven
-   moment on the page is the hero's second line, which needs real easing control.
+   Everything here is CSS scroll-driven (`animation-timeline: view()`), so no JS
+   observers run for what is only ever "this entered the viewport". The single
+   JS-driven moment is the hero, which needs real easing control.
 
-   `@media (prefers-reduced-motion: reduce)` at the bottom is not a degraded mode:
-   it resolves every element to its final state. The page reads perfectly still.
+   The reduced-motion block at the bottom is not a degraded mode: it resolves
+   every element to its finished state. The page reads perfectly still.
 --------------------------------------------------------------------------- */
 
-/* The margin voice: arrives as the line it belongs to reaches centre. It comes in
-   from further out and settles — the whole gesture is someone leaning in to say
-   something, not a UI element animating. */
+/* The general reveal. Content rises and arrives as you scroll to it. It is
+   deliberately short and early-resolving: by the time a line is somewhere you'd
+   actually read it, it is already fully present. A longer range looks better in
+   isolation and reads, in practice, as text that hasn't loaded. */
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(0.9rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal {
+  animation: reveal linear both;
+  animation-timeline: view();
+  animation-range: entry 5% cover 26%;
+}
+
+/* The margin voice comes in from further out and settles. The gesture is someone
+   leaning in to say something, not a UI element animating. */
 @keyframes note-arrive {
   from {
     opacity: 0;
-    transform: translateX(0.75rem);
+    transform: translateX(0.9rem);
   }
   to {
     opacity: 1;
@@ -72,30 +95,147 @@ body {
 .note {
   animation: note-arrive linear both;
   animation-timeline: view();
-  animation-range: entry 15% cover 40%;
+  animation-range: entry 15% cover 42%;
 }
 
-/* Prose settles as it rises into the column. Deliberately not a fade-up on every
-   block — this is one continuous, quiet gesture applied to the reading column
-   only, and it is nearly imperceptible by design. */
-@keyframes settle {
+/* ---------------------------------------------------------------------------
+   The spine.
+
+   A single sage line running the length of the page, drawing itself as you
+   scroll, with a node at each section. This is the "timeline" reading: it gives
+   the page a spatial through-line and makes the dated Background rows sit on
+   something, without turning any prose into cards.
+
+   The fill is driven by a view-timeline on the wrapper, so it tracks progress
+   through the sections rather than through the whole document (which would
+   include the hero, and start the line already part-drawn).
+--------------------------------------------------------------------------- */
+.spine-wrap {
+  view-timeline-name: --spine;
+  view-timeline-axis: block;
+}
+
+@keyframes spine-draw {
   from {
-    opacity: 0.55;
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+.spine-fill {
+  transform-origin: top;
+  animation: spine-draw linear both;
+  animation-timeline: --spine;
+  /* From the moment the sections fill the viewport to the moment they leave it. */
+  animation-range: entry 100% exit 0%;
+}
+
+/* Nodes pop as their section arrives. */
+@keyframes node-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.2);
   }
   to {
     opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
   }
 }
 
-.settle {
-  animation: settle linear both;
+.node {
+  animation: node-in linear both;
   animation-timeline: view();
-  /* Resolves early — by the time a paragraph is somewhere you'd actually read it,
-     it is already at full opacity. A lower floor or a longer range looks like a
-     nice effect in isolation and reads, in practice, as text that hasn't loaded. */
-  animation-range: entry 0% cover 22%;
+  animation-range: entry 10% cover 20%;
 }
 
+/* ---------------------------------------------------------------------------
+   The sheen. One place, one time.
+
+   A light sweeps across the hero as it lands, and then never again anywhere on
+   the site. This is the brief's own rule (spend the boldness in one place) taken
+   literally.
+
+   Two safety properties, both deliberate:
+   - The gradient's base colour IS the text colour, so before, after, and during
+     the sweep the type is fully legible. There is no state where it reads as
+     missing.
+   - `color: transparent` is applied ONLY inside @supports for background-clip:
+     text. Without that guard, a browser lacking the property would paint
+     transparent text on a transparent background, and the hero would simply not
+     exist.
+--------------------------------------------------------------------------- */
+.sheen {
+  color: var(--sheen-base);
+}
+
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  .sheen {
+    background-image: linear-gradient(
+      105deg,
+      var(--sheen-base) 42%,
+      var(--color-shine) 50%,
+      var(--sheen-base) 58%
+    );
+    background-size: 250% 100%;
+    background-position: 130% 0;
+    /* MUST tile. The gradient is wider than the text and slides across it, so with
+       `no-repeat` the uncovered part of the line has no background at all, and
+       background-clip: text paints it as nothing. The first and last stops are both
+       --sheen-base, so tiles meet base-to-base and the seam is invisible. */
+    background-repeat: repeat;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    animation: sheen-sweep 1.5s cubic-bezier(0.4, 0, 0.2, 1) var(--sheen-delay, 2s)
+      both;
+  }
+}
+
+@keyframes sheen-sweep {
+  from {
+    background-position: 130% 0;
+  }
+  to {
+    background-position: -30% 0;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   The reflection. One place, the hero.
+
+   A flipped copy of the name resting on a polished surface. It's a real second
+   rendering of the type (not a filter), flipped on Y and dissolved downward with
+   a mask so the "far" edge fades to nothing. Kept faint so it reads as a
+   reflection rather than as a second headline competing with the first.
+
+   It fades UP into place after the name lands, so the surface appears to catch
+   the type rather than being there from the first frame.
+--------------------------------------------------------------------------- */
+.mirror {
+  transform: scaleY(-1);
+  transform-origin: top;
+  opacity: 0.18;
+  margin-top: 0.12em;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, transparent 55%);
+  mask-image: linear-gradient(to bottom, #000 0%, transparent 55%);
+  animation: mirror-in 1.1s ease-out 0.7s both;
+}
+
+@keyframes mirror-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.18;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Motion off. Not a lesser page, just a still one.
+--------------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -108,10 +248,32 @@ body {
     transition: none !important;
   }
 
-  /* Resolve to the finished state rather than leaving anything mid-keyframe. */
+  .reveal,
   .note,
-  .settle {
+  .node {
     opacity: 1 !important;
     transform: none !important;
+  }
+
+  .node {
+    transform: translate(-50%, -50%) !important;
+  }
+
+  /* The reflection is static geometry, not motion, so it stays. It just doesn't
+     animate in: it's already at rest, flipped, at its resting opacity. */
+  .mirror {
+    opacity: 0.18 !important;
+    transform: scaleY(-1) !important;
+  }
+
+  .spine-fill {
+    transform: scaleY(1) !important;
+  }
+
+  /* Back to plain painted type. No gradient, no transparent fill. */
+  .sheen {
+    background-image: none !important;
+    color: var(--sheen-base) !important;
+    -webkit-text-fill-color: var(--sheen-base) !important;
   }
 }

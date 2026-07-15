@@ -1,23 +1,22 @@
 "use client";
 
 import { motion, useReducedMotion } from "motion/react";
+import type { CSSProperties } from "react";
 import { hero } from "@/lib/content";
 
 /**
- * The one moment on the site.
+ * The one moment on the site: the name arrives, the sheen passes across it once,
+ * and it rests on its own reflection.
  *
- * The break between the two lines is the whole point: the first line is the
- * person, the second is the turn. So the second line does not simply fade in
- * behind the first — it waits a full beat, and lands.
- *
- * The easing is asymmetric on purpose. Both lines rise, but line two travels
- * further and decelerates harder, so it reads as arriving at a conclusion rather
- * than as a second item in a staggered list. That's the difference between the
- * sentence landing and a UI animating.
+ * The reflection is a second, aria-hidden copy of the name, flipped on Y and
+ * faded out through a mask, sitting directly beneath the real one. It reads as
+ * type on a polished surface. It is the only mirror on the page, and like the
+ * sheen it lives here and nowhere else, which is how the brief asks boldness to
+ * be spent: all in one place.
  */
 
-const line = {
-  hidden: { opacity: 0, y: "0.4em" },
+const rise = {
+  hidden: { opacity: 0, y: "0.35em" },
   visible: (delay: number) => ({
     opacity: 1,
     y: 0,
@@ -28,37 +27,51 @@ const line = {
   }),
 };
 
+// The gradient needs the "real" painted colour so the sweep can pass through the
+// type and leave it exactly as it found it. The delay sits after the name has
+// finished arriving; a sheen over still-moving type reads as a glitch, not light.
+const inkBase = {
+  "--sheen-base": "#12211e",
+  "--sheen-delay": "1.5s",
+} as CSSProperties;
+
 export default function Hero() {
   const reduced = useReducedMotion();
 
   return (
     <section className="flex min-h-svh items-center px-6 sm:px-10">
-      <h1 className="mx-auto w-full max-w-5xl font-display text-[2rem] font-medium leading-[1.15] tracking-[-0.02em] sm:text-5xl md:text-6xl lg:text-[4rem]">
-        {/* Two lines, not one wrapped paragraph — the break is the content.
-            `text-balance` keeps each sentence's own wrap even, so line one doesn't
-            drop a single orphaned word ("ideas.") onto a line of its own. */}
-        <motion.span
-          className="block text-balance"
-          variants={line}
+      <div className="mx-auto w-full max-w-5xl">
+        <motion.h1
+          className="font-display text-[3.25rem] font-semibold leading-[0.95] tracking-[-0.03em] sm:text-7xl md:text-8xl lg:text-[7.5rem]"
+          variants={rise}
           initial={reduced ? "visible" : "hidden"}
           animate="visible"
           custom={0.15}
         >
-          {hero.line1}
-        </motion.span>
+          <span className="sheen" style={inkBase}>
+            {hero.name}
+          </span>
 
-        <motion.span
-          className="mt-2 block text-balance text-accent sm:mt-3"
-          variants={line}
+          {/* The reflection. Purely decorative, so it's hidden from assistive tech
+              and pointer events. It mirrors the real name and dissolves downward. */}
+          <span
+            aria-hidden="true"
+            className="mirror block select-none font-display text-[3.25rem] font-semibold leading-[0.95] tracking-[-0.03em] text-ink sm:text-7xl md:text-8xl lg:text-[7.5rem]"
+          >
+            {hero.name}
+          </span>
+        </motion.h1>
+
+        <motion.p
+          className="-mt-2 max-w-2xl text-balance font-body text-xl leading-[1.4] text-muted sm:mt-0 sm:text-2xl"
+          variants={rise}
           initial={reduced ? "visible" : "hidden"}
           animate="visible"
-          // The beat. Long enough that the first line is read and finished before
-          // the second exists. Shorter than this and they read as one block.
-          custom={1.15}
+          custom={0.9}
         >
-          {hero.line2}
-        </motion.span>
-      </h1>
+          {hero.tagline}
+        </motion.p>
+      </div>
     </section>
   );
 }
