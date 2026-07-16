@@ -33,12 +33,11 @@ export const hero = {
 };
 
 export const contact = {
-  invitation:
-    "i'm a very curious human and I love talking. reach out if you're keen to discuss anything at all.",
+  invitation: `i love talking. i do it too much — enough that someone once reminded me i have "two ears and one mouth for a reason." reach out about anything. the odds it makes me happier than you are extremely high.`,
   location: "toronto based. currently in whistler, british columbia.",
   // The margin voice gets the joke, which is the right division of labour: the
   // column states where she is, the margin admits how she feels about it.
-  note: "(and in new york on 48 hours' notice. the notice is a formality because truthfully speaking i am always already half-packed.)",
+  note: "(and in new york on 48 hours' notice. the notice is a formality because truthfully speaking i am always already half-packed. i will justify that trip to a concerning extent.)",
 };
 
 export type Block = { p: string };
@@ -121,7 +120,7 @@ export const sections: Section[] = [
         p: "i'm also deeply interested in healthcare. i start my Master's in Biomedical Discovery and Commercialization at McMaster this fall.",
       },
       {
-        p: "that interest isn't abstract. it comes from my own experiences navigating challenges with own health and the healthcare system, which is a fairly efficient way to learn where it works and where it doesn't.",
+        p: "that interest isn't abstract. it comes from my own experiences navigating challenges with my health and the healthcare system, which is a fairly efficient way to learn where it works and where it doesn't.",
       },
     ],
     // No margin note here, on purpose. The brief is explicit that this section stays short and
