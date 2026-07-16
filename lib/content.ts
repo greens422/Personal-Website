@@ -34,11 +34,11 @@ export const hero = {
 
 export const contact = {
   invitation:
-    "I'm a very curious human and I love talking. Reach out if you're keen to discuss anything at all.",
-  location: "Toronto based. Currently in Whistler, British Columbia.",
+    "i'm a very curious human and I love talking. reach out if you're keen to discuss anything at all.",
+  location: "toronto based. currently in whistler, british columbia.",
   // The margin voice gets the joke, which is the right division of labour: the
   // column states where she is, the margin admits how she feels about it.
-  note: "(and in new york on 48 hours' notice. the notice is a formality. i am always already half-packed.)",
+  note: "(and in new york on 48 hours' notice. the notice is a formality because truthfully speaking i am always already half-packed.)",
 };
 
 export type Block = { p: string };
@@ -51,7 +51,7 @@ export type Section = {
   heading: string;
   blocks: Block[];
   /**
-   * "Hi there," is a sentence she says, not a filing label. Every other
+   * "at least one person is reading this," is a sentence she says, not a filing label. Every other
    * heading here ("The Network", "Background") genuinely is a label. So the intro
    * gets set as a spoken line and the rest get set as quiet section markers.
    */
@@ -65,18 +65,18 @@ export type Section = {
 export const sections: Section[] = [
   {
     id: "intro",
-    heading: "Hi, I'm Sophia.",
+    heading: "hello,",
     lead: true,
     blocks: [
       {
-        p: "I don't come from an engineering background. Most of what I've done, and most of what I'm doing now, is driven by pure interest: teaching myself, and learning from people who know more than I do.",
+        p: "i don't come from an engineering background. most of what i've done, and most of what i'm doing now, is driven by pure interest: teaching myself, and learning from people who know [way] more than i do.",
       },
       {
-        p: "Which is why this wave of AI is the most fun I've had. I've always had more ideas than I had the ability to build. The technical barrier was the bottleneck. It isn't anymore.",
+        p: "i've always been someone with a lot of thoughts — probably more totally ridiculous ones than actually logical ones. regardless, the number has always far outrun my *very* limited ability to build. the technical barrier was the bottleneck, and to put it simply, it isn't anymore. in other words, AI has been a convenient development for me.",
       },
     ],
     note: {
-      text: "(the honest version: i was the person with forty tabs open and no way to ship any of it.)",
+      text: "(my abundance of ideas finally moves at the same speed i can build)",
       anchor: 1,
     },
   },
@@ -85,15 +85,15 @@ export const sections: Section[] = [
     heading: "The Network",
     blocks: [
       {
-        p: "I'm involved with **The Network** (The Network Labs), a platform built around user-owned intelligence for the consumer data economy.",
+        p: "i'm involved with **The Network** (The Network Labs), a platform built around user-owned intelligence for the consumer data economy.",
       },
       {
-        p: "As more of life moves into a digital economy, your digital context (what you've done, what you like, who you know, what you've made) becomes one of the most valuable things you have. Right now you don't own it, and you don't benefit from it.",
+        p: "as more of life moves into a digital economy, your digital context (what you've done, what you like, who you know, what you've made) becomes one of the most valuable things you have. right now you don't own it, and you don't benefit from it.",
       },
       {
-        p: "The Network is a consumer data portability company, building toward a future where individuals own, control, and benefit from their digital context.",
+        p: "the Network is a consumer data portability company, building toward a future where individuals own, control, and benefit from their digital context.",
       },
-      { p: "It's the thing I care most about right now." },
+      { p: "it's the thing I care most about right now." },
     ],
     note: {
       text: "(read: you should own your own data. wild that this is a hot take.)",
@@ -105,7 +105,7 @@ export const sections: Section[] = [
     heading: "CPG",
     blocks: [
       {
-        p: "I love CPG. I think it's genuinely fun. When you're someone who's always thinking of new ideas, there's nothing quite like watching what actually *lands* with people: what they pick up, what they keep buying, what they tell a friend about. It's the fastest feedback loop there is on whether an idea was any good.",
+        p: "i love CPG. i think it's genuinely so much fun. when you're someone who's always thinking of new ideas, there's nothing quite like watching what actually *lands* with people: what they pick up, what they keep buying, what they tell a friend about. it's the fastest feedback loop there is on whether an idea was any good.",
       },
     ],
     note: {
@@ -118,10 +118,10 @@ export const sections: Section[] = [
     heading: "Healthcare",
     blocks: [
       {
-        p: "I'm also deeply interested in healthcare. I start my Master's in Biomedical Discovery and Commercialization at McMaster this fall.",
+        p: "i'm also deeply interested in healthcare. i start my Master's in Biomedical Discovery and Commercialization at McMaster this fall.",
       },
       {
-        p: "That interest isn't abstract. It comes from my own experiences navigating the healthcare system, which is a fairly efficient way to learn where it works and where it doesn't.",
+        p: "that interest isn't abstract. it comes from my own experiences navigating challenges with own health and the healthcare system, which is a fairly efficient way to learn where it works and where it doesn't.",
       },
     ],
     // No margin note here, on purpose. The brief is explicit that this section stays short and
@@ -133,7 +133,7 @@ export const sections: Section[] = [
     heading: "Background",
     blocks: [
       {
-        p: "it all made sense.... in the moment...",
+        p: "the paper trail of "ooh"",
       },
     ],
     events: [
@@ -143,15 +143,15 @@ export const sections: Section[] = [
       },
       {
         when: "2024",
-        what: "CIBC Asset Management, Montréal. Portfolio risk on the Global Beta and Overlays desk.",
+        what: "CIBC Asset Management, Montréal. Global Beta, Overlays and Outcome Management desk.",
       },
       {
         when: "2025",
-        what: "CIBC Capital Markets, Toronto. Equity-linked structured notes, on the Sales and Trading floor.",
+        what: "CIBC Capital Markets, Toronto. Equity-linked structured notes. Sales and Trading.",
       },
       {
         when: "2025 – 2026",
-        what: "McArthur Lab. Senior thesis in computational biology, building ML pipelines for antimicrobial resistance data.",
+        what: "McArthur Lab. Senior thesis in computational biology, helping to build ML pipelines for antimicrobial resistance data (thank you cursor pro).",
       },
       {
         when: "2026 –",
@@ -159,7 +159,7 @@ export const sections: Section[] = [
       },
     ],
     note: {
-      text: "(nobody planned this. i just kept following the thing i was most curious about.)",
+      text: "(for now, i'm taking advantage of not having to think in terms of "career." just doing what i'm drawn to and trusting it will add up.)",
       anchor: 0,
     },
   },
@@ -168,10 +168,10 @@ export const sections: Section[] = [
     heading: "The belief",
     blocks: [
       {
-        p: "Humans are extraordinarily creative. I think technology is about to be the most permitting thing that's ever happened to that creativity. It takes the barrier between having an idea and making it real, and shrinks it to almost nothing.",
+        p: "humans are, at their core, extraordinarily creative. i think technology is about to be the most permitting thing that's ever happened to that creativity. it takes the barrier between having an idea and making it real, and shrinks it to almost nothing.",
       },
       {
-        p: "But it has to be built properly. Keeping a human in the loop isn't a constraint on the technology; it's the point of it. I care as much about that as I do about the building itself, which means caring about regulation, and about who owns what.",
+        p: "but it has to be built properly. keeping a human in the loop isn't a constraint on the technology; it's the point of it. i care as much about that as i do about the building itself, which means caring about regulation, and about who owns what.",
       },
     ],
     note: {
