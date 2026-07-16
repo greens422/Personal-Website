@@ -133,7 +133,7 @@ export const sections: Section[] = [
     heading: "Background",
     blocks: [
       {
-        p: `the paper trail of "ooh" — with a brief detour into "what can i do today to enhance shareholder value."`,
+        p: `the paper trail of "ooh" — with a brief detour into "what can i do today to enhance shareholder value"`,
       },
     ],
     events: [
@@ -159,7 +159,7 @@ export const sections: Section[] = [
       },
     ],
     note: {
-      text: `(for now, i'm taking advantage of not having to think in terms of "career." just doing what i'm drawn to and trusting it will add up.)`,
+      text: `(for now, i'm taking advantage of not having to think in terms of "career." just doing what i'm drawn to and trusting it will add up)`,
       anchor: 0,
     },
   },
