@@ -61,8 +61,8 @@ export default function Contact() {
           alt="Sophia Green"
           width={104}
           height={104}
-          className="h-20 w-20 shrink-0 rounded-full object-cover object-top sm:h-24 sm:w-24"
-        />
+          className="h-20 w-20 shrink-0 rounded-full object-cover object-[center_40%] sm:h-24 sm:w-24"
+          />
 
         <p className="text-lg leading-[1.7] sm:text-xl">
           <a href={`mailto:${EMAIL}`} className={linkStyle}>
