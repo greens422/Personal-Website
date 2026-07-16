@@ -91,7 +91,7 @@ export const sections: Section[] = [
         p: "as more of life moves into a digital economy, your digital context (what you've done, what you like, who you know, what you've made) becomes one of the most valuable things you have. right now you don't own it, and you don't benefit from it.",
       },
       {
-        p: "the Network is a consumer data portability company, building toward a future where individuals own, control, and benefit from their digital context.",
+        p: "The Network is a consumer data portability company, building toward a future where individuals own, control, and benefit from their digital context.",
       },
       { p: "it's the thing I care most about right now." },
     ],
@@ -133,7 +133,7 @@ export const sections: Section[] = [
     heading: "Background",
     blocks: [
       {
-        p: 'the paper trail of "ooh".',
+        p: `the paper trail of "ooh" — with a brief detour into "what can i do today to enhance shareholder value."`,
       },
     ],
     events: [
