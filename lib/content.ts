@@ -133,7 +133,7 @@ export const sections: Section[] = [
     heading: "Background",
     blocks: [
       {
-        p: "the paper trail of "ooh"",
+        p: "the paper trail of "ooh",",
       },
     ],
     events: [
