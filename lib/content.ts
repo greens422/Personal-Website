@@ -68,7 +68,7 @@ export const sections: Section[] = [
     lead: true,
     blocks: [
       {
-        p: "i don't come from an engineering background. most of what i've done, and most of what i'm doing now, is driven by pure interest: teaching myself, and learning from people who know [way] more than i do.",
+        p: "most of what i've done, and most of what i'm doing now, is driven by pure interest: teaching myself, and learning from people who know *way* more than i do.",
       },
       {
         p: "i've always been someone with a lot of thoughts — probably more totally ridiculous ones than actually logical ones. regardless, the number has always far outrun my *very* limited ability to build. the technical barrier was the bottleneck, and to put it simply, it isn't anymore. in other words, AI has been a convenient development for me.",
@@ -132,7 +132,7 @@ export const sections: Section[] = [
     heading: "Background",
     blocks: [
       {
-        p: `the paper trail of "ooh" — with a brief detour into "what can i do today to enhance shareholder value"`,
+        p: `the paper trail of "ooh" complemented by a brief detour into "what can i do today to enhance shareholder value"`,
       },
     ],
     events: [
