@@ -138,7 +138,7 @@ export const sections: Section[] = [
     events: [
       {
         when: "2022 – 2026",
-        what: "Honours Bachelor of Health Sciences, Biomedical Discovery and Commercialization, McMaster.",
+        what: "Honours Bachelor of Health Sciences, Biomedical Discovery and Commercialization (BDC), McMaster.",
       },
       {
         when: "2024",
@@ -153,8 +153,12 @@ export const sections: Section[] = [
         what: "McArthur Lab. Senior thesis in computational biology, helping to build ML pipelines for antimicrobial resistance data (thank you cursor pro).",
       },
       {
+        when: "2026",
+        what: "Ziptrek Ecotours, Whistler, British Columbia. Guest Services.",
+      },
+      {
         when: "2026 –",
-        what: "The MBDC program at McMaster University.",
+        what: "Master's of Biomedical Discovery and Commericalization (MBDC) program at McMaster University.",
       },
     ],
     note: {
