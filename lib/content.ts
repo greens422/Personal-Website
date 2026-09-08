@@ -34,7 +34,7 @@ export const hero = {
 
 export const contact = {
   invitation: `i love talking. i do it too much — enough that someone once reminded me i have "two ears and one mouth for a reason." reach out about anything. the odds it makes me happier than you are extremely high.`,
-  location: "toronto based. currently in whistler, british columbia.",
+  location: "toronto based.",
   // The margin voice gets the joke, which is the right division of labour: the
   // column states where she is, the margin admits how she feels about it.
   note: "(and in new york on 48 hours' notice. the notice is a formality because truthfully speaking i am always already half-packed. i will justify that trip to a concerning extent.)",
